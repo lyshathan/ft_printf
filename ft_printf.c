@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ly-sha <ly-sha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:02:25 by lthan             #+#    #+#             */
-/*   Updated: 2024/11/15 12:03:36 by ly-sha           ###   ########.fr       */
+/*   Updated: 2024/11/19 09:39:14 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_format(char c)
 {
 	if (c == 'c' || c == 's' || c == 's' || c == 'p'
-		||c == 'd' ||c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
+		|| c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }
@@ -54,53 +54,47 @@ int	ft_printf(const char *format, ...)
 	count = 0;
 	while (format[i])
 	{
+		if (format[i] == '%' && is_format(format[i + 1]) == 0)
+			break ;
 		if (format[i] == '%' && format[i + 1] && is_format(format[i + 1]))
-		{
-			special_print(format[i + 1], args, &count);
-			i += 2;
-		}
-		if (format[i] == '%')
-			i++;
-		if (format[i])
+			special_print(format[++i], args, &count);
+		else
 		{
 			ft_putchar_fd(format[i], 1);
 			count++;
-			i++;
 		}
+		i++;
 	}
 	va_end(args);
 	return (count);
 }
 
-#include <stdio.h>
-#include <limits.h>
+// int	ft_printf(const char *format, ...)
+// {
+// 	size_t	i;
+// 	int		count;
+// 	va_list	args;
 
-int	main(void)
-{
-	int *ptr;
-	//ptr = NULL;
-	int	nbr = -4242;
-
-	printf("\nCOUNT = %d\n",
-	ft_printf("TEXT\n%c\n%s\n%p\nHello!\n%d\n%i\n%u\n%x\n%%bye.",
-	'A',
-	"Bonjour",
-	ptr,
-	nbr,
-	nbr,
-	nbr,
-	nbr));
-
-	printf("\n=====================\n");
-
-	printf("\nCOUNT = %d\n",
-	printf("TEXT\n%c\n%s\n%p\nHello!\n%d\n%i\n%u\n%x\n%%bye.",
-	'A',
-	"Bonjour",
-	ptr,
-	nbr,
-	nbr,
-	nbr,
-	nbr));
-	return (0);
-}
+// 	if (!format)
+// 		return (0);
+// 	va_start(args, format);
+// 	i = -1;
+// 	count = 0;
+// 	while (format[++i])
+// 	{
+// 		if (format[i] == '%' && format[i + 1])
+// 		{
+// 			if (is_format(format[i + 1]) == 0)
+// 				break;
+// 			special_print(format[i + 1], args, &count);
+// 			i++;
+// 		}
+// 		else
+// 		{
+// 			ft_putchar_fd(format[i], 1);
+// 			count++;
+// 		}
+// 	}
+// 	va_end(args);
+// 	return (count);
+// }

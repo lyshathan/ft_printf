@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexa.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:13:33 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/19 09:00:16 by lthan            ###   ########.fr       */
+/*   Created: 2024/11/07 08:40:56 by lthan             #+#    #+#             */
+/*   Updated: 2024/11/14 14:02:26 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_hexa(int nbr, int *count, char c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*hexa;
+	int	i;
 
-	if (c == 'x')
-		hexa = "0123456789abcdef";
-	if (c == 'X')
-		hexa = "0123456789ABCDEF";
-	if ((unsigned int)nbr >= 16)
-		print_hexa(((unsigned int)nbr / 16), count, c);
-	ft_putchar_fd((hexa[(unsigned int)nbr % 16]), 1);
-	*count += 1;
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
+
+/* void	ft_even_upper(unsigned int i, char *c)
+{
+	if (i % 2 == 0 && (*c >= 'a' && *c <= 'z'))
+		*c = *c - 32;
+}
+
+int	main(int arc, char **arv)
+{
+	(void)arc;
+
+	ft_striteri(arv[1], &ft_even_upper);
+	printf("%s", arv[1]);
+	return (0);
+} */

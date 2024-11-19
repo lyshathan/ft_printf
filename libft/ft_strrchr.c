@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexa.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:13:33 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/19 09:00:16 by lthan            ###   ########.fr       */
+/*   Created: 2024/11/05 15:07:05 by lthan             #+#    #+#             */
+/*   Updated: 2024/11/07 16:49:58 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_hexa(int nbr, int *count, char c)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*hexa;
+	size_t	len;
 
-	if (c == 'x')
-		hexa = "0123456789abcdef";
-	if (c == 'X')
-		hexa = "0123456789ABCDEF";
-	if ((unsigned int)nbr >= 16)
-		print_hexa(((unsigned int)nbr / 16), count, c);
-	ft_putchar_fd((hexa[(unsigned int)nbr % 16]), 1);
-	*count += 1;
+	len = ft_strlen(s);
+	if (((char *)s)[len] == 0 && (char)c == 0)
+		return (&((char *)s)[len]);
+	while (len--)
+	{
+		if (((char *)s)[len] == (char)c)
+			return (&((char *)s)[len]);
+	}
+	return (NULL);
 }
+
+/* #include <stdio.h>
+int	main(int arc, char ** arv)
+{
+	(void)arc;
+
+	printf("%s", ft_strrchr(arv[1], 'o'));
+	return (0);
+} */

@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexa.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:13:33 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/19 09:00:16 by lthan            ###   ########.fr       */
+/*   Created: 2024/11/07 09:01:35 by lthan             #+#    #+#             */
+/*   Updated: 2024/11/07 09:09:21 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_hexa(int nbr, int *count, char c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*hexa;
-
-	if (c == 'x')
-		hexa = "0123456789abcdef";
-	if (c == 'X')
-		hexa = "0123456789ABCDEF";
-	if ((unsigned int)nbr >= 16)
-		print_hexa(((unsigned int)nbr / 16), count, c);
-	ft_putchar_fd((hexa[(unsigned int)nbr % 16]), 1);
-	*count += 1;
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr_fd((n / 10), fd);
+	ft_putchar_fd(((n % 10) + '0'), fd);
 }
+
+/* int	main(int arc, char **arv)
+{
+	(void)arc;
+
+	ft_putnbr_fd(atoi(arv[1]), atoi(arv[2]));
+	return (0);
+} */

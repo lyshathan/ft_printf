@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexa.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 11:13:33 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/19 09:00:16 by lthan            ###   ########.fr       */
+/*   Created: 2024/11/07 08:58:16 by lthan             #+#    #+#             */
+/*   Updated: 2024/11/07 13:38:01 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_hexa(int nbr, int *count, char c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*hexa;
+	size_t	i;
 
-	if (c == 'x')
-		hexa = "0123456789abcdef";
-	if (c == 'X')
-		hexa = "0123456789ABCDEF";
-	if ((unsigned int)nbr >= 16)
-		print_hexa(((unsigned int)nbr / 16), count, c);
-	ft_putchar_fd((hexa[(unsigned int)nbr % 16]), 1);
-	*count += 1;
+	i = 0;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }
+
+/* int	main(int arc, char **arv)
+{
+	(void)arc;
+
+	ft_putendl_fd(arv[1], 1);
+	return (0);
+} */

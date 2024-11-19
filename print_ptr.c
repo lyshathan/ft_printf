@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ly-sha <ly-sha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 09:55:55 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/15 11:39:18 by ly-sha           ###   ########.fr       */
+/*   Updated: 2024/11/19 09:22:11 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	print_ptr(void *ptr, int *count)
 	address = (size_t)ptr;
 	if (address == 0)
 	{
-		write (1, "0x0", 3);
-		*count += 3;
+		write (1, "(nil)", 5);
+		*count += 5;
 		return ;
 	}
 	write (1, "0x", 2);

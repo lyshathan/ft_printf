@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 09:51:16 by ly-sha            #+#    #+#             */
-/*   Updated: 2024/11/19 09:06:56 by lthan            ###   ########.fr       */
+/*   Created: 2024/11/05 15:24:33 by lthan             #+#    #+#             */
+/*   Updated: 2024/11/07 15:14:06 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_str(char *str, int *count)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (!str)
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
-		write(1, "(null)", 6);
-		*count += 6;
-		return ;
+		if (((char *)s)[i] == (char)c)
+			return (&((char *)s)[i]);
+		i++;
 	}
-	ft_putstr_fd(str, 1);
-	*count = *count + ft_strlen(str);
+	return (NULL);
 }
+
+/* #include <stdio.h>
+#include <stdlib.h>
+int	main(int arc, char **arv)
+{
+	(void)arc;
+
+	printf("%s\n", (char *)ft_memchr(arv[1], 'x', atoi(arv[2])));
+	printf("%s\n", (char *)memchr(arv[1], 'x', atoi(arv[2])));
+	return (0);
+} */
