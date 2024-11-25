@@ -6,7 +6,7 @@
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:02:25 by lthan             #+#    #+#             */
-/*   Updated: 2024/11/25 09:14:30 by lthan            ###   ########.fr       */
+/*   Updated: 2024/11/25 11:19:05 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%' && !is_format(format[i + 1]))
-			return (-1);
+			return (va_end(args), -1);
 		if (format[i] == '%' && format[i + 1] && is_format(format[i + 1]))
 			special_print(format[++i], args, &count);
 		else
@@ -65,6 +65,5 @@ int	ft_printf(const char *format, ...)
 		}
 		i++;
 	}
-	va_end(args);
-	return (count);
+	return (va_end(args), count);
 }
