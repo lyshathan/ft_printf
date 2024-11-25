@@ -6,7 +6,7 @@
 /*   By: lthan <lthan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:02:25 by lthan             #+#    #+#             */
-/*   Updated: 2024/11/19 09:39:14 by lthan            ###   ########.fr       */
+/*   Updated: 2024/11/25 09:14:30 by lthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 
 	if (!format)
-		return (0);
+		return (-1);
 	va_start(args, format);
 	i = 0;
 	count = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && is_format(format[i + 1]) == 0)
-			break ;
+		if (format[i] == '%' && !is_format(format[i + 1]))
+			return (-1);
 		if (format[i] == '%' && format[i + 1] && is_format(format[i + 1]))
 			special_print(format[++i], args, &count);
 		else
@@ -68,33 +68,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
-// int	ft_printf(const char *format, ...)
-// {
-// 	size_t	i;
-// 	int		count;
-// 	va_list	args;
-
-// 	if (!format)
-// 		return (0);
-// 	va_start(args, format);
-// 	i = -1;
-// 	count = 0;
-// 	while (format[++i])
-// 	{
-// 		if (format[i] == '%' && format[i + 1])
-// 		{
-// 			if (is_format(format[i + 1]) == 0)
-// 				break;
-// 			special_print(format[i + 1], args, &count);
-// 			i++;
-// 		}
-// 		else
-// 		{
-// 			ft_putchar_fd(format[i], 1);
-// 			count++;
-// 		}
-// 	}
-// 	va_end(args);
-// 	return (count);
-// }
