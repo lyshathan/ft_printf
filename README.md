@@ -1,7 +1,3 @@
-Certainly! Here's a concise README for the **ft_printf** project at 42 School:
-
----
-
 # ft_printf Project 🎨
 
 The **ft_printf** project requires you to implement your own version of the `printf` function, supporting a limited set of format specifiers. In this version, you’ll handle the following specifiers:
@@ -54,10 +50,3 @@ The **ft_printf** project requires you to implement your own version of the `pri
   - `%X`: Print a hexadecimal (uppercase)
   - `%p`: Print a pointer address
 
----
-
-Good luck, and may your formatting be perfect! 🎉
-
----
-
-If you'd like this in a file, just let me know!
